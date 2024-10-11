@@ -1,25 +1,13 @@
-import Heading from "./Heading.js";
-import Section from "./Section.js";
+import AddTask from "./AddTask.js";
+import TaskList from "./TaskList.js";
+import { TasksProvider } from "./TasksContext.js";
 
-export default function Page() {
+export default function TaskApp() {
   return (
-    <Section>
-      <Heading>大标题</Heading>
-      <Section>
-        <Heading>一级标题</Heading>
-        <Heading>一级标题</Heading>
-        <Heading>一级标题</Heading>
-        <Section>
-          <Heading>二级标题</Heading>
-          <Heading>二级标题</Heading>
-          <Heading>二级标题</Heading>
-          <Section>
-            <Heading>三级标题</Heading>
-            <Heading>三级标题</Heading>
-            <Heading>三级标题</Heading>
-          </Section>
-        </Section>
-      </Section>
-    </Section>
+    <TasksProvider>
+      <h1>在京都休息一天</h1>
+      <AddTask />
+      <TaskList />
+    </TasksProvider>
   );
 }
