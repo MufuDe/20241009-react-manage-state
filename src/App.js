@@ -20,7 +20,7 @@ export default function Picture() {
         }}
         className={pictureClassName}
         alt="Rainbow houses in Kampung Pelangi, Indonesia"
-        src="https://i.imgur.com/5qwVYb1.jpeg"
+        src="/img/5qwVYb1.jpg"
       />
     </div>
   );
