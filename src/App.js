@@ -1,71 +1,31 @@
-import { useImmer } from "use-immer";
-import { initialTravelPlan } from "./places.js";
+import { useState, useEffect } from "react";
+import Clock from "./Clock.js";
 
-export default function TravelPlan() {
-  const [plan, updatePlan] = useImmer(initialTravelPlan);
-
-  function handleComplete(parentId, childId) {
-    updatePlan((draft) => {
-      // 从父级地点的子 ID 中移除。
-      const parent = draft[parentId];
-      parent.childIds = parent.childIds.filter((id) => id !== childId);
-
-      // 删除这个地点和它的所有子目录。
-      deleteAllChildren(childId);
-      function deleteAllChildren(id) {
-        const place = draft[id];
-        place.childIds.forEach(deleteAllChildren);
-        delete draft[id];
-      }
-    });
-  }
-
-  const root = plan[0];
-  const planetIds = root.childIds;
-  return (
-    <>
-      <h2>Places to visit</h2>
-      <ol>
-        {planetIds.map((id) => (
-          <PlaceTree
-            key={id}
-            id={id}
-            parentId={0}
-            placesById={plan}
-            onComplete={handleComplete}
-          />
-        ))}
-      </ol>
-    </>
-  );
+function useTime() {
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
 }
 
-function PlaceTree({ id, parentId, placesById, onComplete }) {
-  const place = placesById[id];
-  const childIds = place.childIds;
+export default function App() {
+  const time = useTime();
+  const [color, setColor] = useState("lightcoral");
   return (
-    <li>
-      {place.title}
-      <button
-        onClick={() => {
-          onComplete(parentId, id);
-        }}
-      >
-        Complete
-      </button>
-      {childIds.length > 0 && (
-        <ol>
-          {childIds.map((childId) => (
-            <PlaceTree
-              key={childId}
-              id={childId}
-              parentId={id}
-              placesById={placesById}
-              onComplete={onComplete}
-            />
-          ))}
-        </ol>
-      )}
-    </li>
+    <div>
+      <p>
+        Pick a color:{" "}
+        <select value={color} onChange={(e) => setColor(e.target.value)}>
+          <option value="lightcoral">lightcoral</option>
+          <option value="midnightblue">midnightblue</option>
+          <option value="rebeccapurple">rebeccapurple</option>
+        </select>
+      </p>
+      <Clock color={color} time={time.toLocaleTimeString()} />
+    </div>
   );
 }
