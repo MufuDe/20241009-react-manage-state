@@ -46,6 +46,8 @@ ul {
   padding-inline-start: 20px;
 }
 
-button { margin: 5px; }
-li { border-radius: 5px; }
-.highlighted { background: #d2eaff; }
+h3, p { margin: 5px 0px; }
+.panel {
+  padding: 10px;
+  border: 1px solid #aaa;
+}
