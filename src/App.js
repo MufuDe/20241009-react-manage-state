@@ -15,16 +15,16 @@ export default function App() {
   if (reverse) {
     return (
       <>
-        <Field label="姓氏" />
-        <Field label="名字" />
+        <Field key="lastName" label="姓氏" />
+        <Field key="firstName" label="名字" />
         {checkbox}
       </>
     );
   } else {
     return (
       <>
-        <Field label="名字" />
-        <Field label="姓氏" />
+        <Field key="firstName" label="名字" />
+        <Field key="lastName" label="姓氏" />
         {checkbox}
       </>
     );
