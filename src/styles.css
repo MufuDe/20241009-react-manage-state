@@ -46,26 +46,20 @@ ul {
   padding-inline-start: 20px;
 }
 
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li { display: inline-block; }
+li button {
+  padding: 10px;
+}
 label {
   display: block;
-  clear: both;
+  margin: 10px 0;
 }
-
-.counter {
-  width: 100px;
-  text-align: center;
-  border: 1px solid gray;
-  border-radius: 4px;
-  padding: 20px;
-  margin: 0 20px 20px 0;
-  float: left;
-}
-
-.fancy {
-  border: 5px solid gold;
-  color: #ff6767;
-}
-
-.hover {
-  background: #ffffd8;
+button {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
