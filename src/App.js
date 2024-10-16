@@ -1,32 +1,51 @@
 import { useState } from "react";
 
 export default function App() {
-  const [showB, setShowB] = useState(true);
+  const [isFancy, setIsFancy] = useState(false);
+  if (isFancy) {
+    return (
+      <div>
+        <Counter isFancy={true} />
+        <label>
+          <input
+            type="checkbox"
+            checked={isFancy}
+            onChange={(e) => {
+              setIsFancy(e.target.checked);
+            }}
+          />
+          使用好看的样式
+        </label>
+      </div>
+    );
+  }
   return (
     <div>
-      <Counter />
-      {showB && <Counter />}
+      <Counter isFancy={false} />
       <label>
         <input
           type="checkbox"
-          checked={showB}
+          checked={isFancy}
           onChange={(e) => {
-            setShowB(e.target.checked);
+            setIsFancy(e.target.checked);
           }}
         />
-        渲染第二个计数器
+        使用好看的样式
       </label>
     </div>
   );
 }
 
-function Counter() {
+function Counter({ isFancy }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
 
   let className = "counter";
   if (hover) {
     className += " hover";
+  }
+  if (isFancy) {
+    className += " fancy";
   }
 
   return (
