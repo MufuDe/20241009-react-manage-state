@@ -26,7 +26,11 @@ export default function ContactManager() {
         onSelect={(id) => setSelectedId(id)}
       />
       <hr />
-      <EditContact initialData={selectedContact} onSave={handleSave} />
+      <EditContact
+        key={selectedId}
+        initialData={selectedContact}
+        onSave={handleSave}
+      />
     </div>
   );
 }
