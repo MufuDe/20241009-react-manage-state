@@ -3,14 +3,19 @@ import { letters } from "./data.js";
 import Letter from "./Letter.js";
 
 export default function MailClient() {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  // TODO: 支持多选
-  const selectedCount = 1;
+  const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // TODO: 支持多选
-    setSelectedId(toggledId);
+    // 它以前是被选中的吗？
+    if (selectedIds.includes(toggledId)) {
+      // Then remove this ID from the array.
+      setSelectedIds(selectedIds.filter((id) => id !== toggledId));
+    } else {
+      // 否则，增加 ID 到数组中。
+      setSelectedIds([...selectedIds, toggledId]);
+    }
   }
 
   return (
@@ -21,10 +26,7 @@ export default function MailClient() {
           <Letter
             key={letter.id}
             letter={letter}
-            isSelected={
-              // TODO: 支持多选
-              letter.id === selectedId
-            }
+            isSelected={selectedIds.includes(letter.id)}
             onToggle={handleToggle}
           />
         ))}
