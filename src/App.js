@@ -1,52 +1,24 @@
 import { useState } from "react";
 
-export default function App() {
-  const [isFancy, setIsFancy] = useState(false);
-  return (
-    <div>
-      {isFancy ? (
-        <div>
-          <Counter isFancy={true} />
-        </div>
-      ) : (
-        <section>
-          <Counter isFancy={false} />
-        </section>
-      )}
-      <label>
-        <input
-          type="checkbox"
-          checked={isFancy}
-          onChange={(e) => {
-            setIsFancy(e.target.checked);
-          }}
-        />
-        使用好看的样式
-      </label>
-    </div>
-  );
-}
+export default function MyComponent() {
+  const [counter, setCounter] = useState(0);
 
-function Counter({ isFancy }) {
-  const [score, setScore] = useState(0);
-  const [hover, setHover] = useState(false);
+  function MyTextField() {
+    const [text, setText] = useState("");
 
-  let className = "counter";
-  if (hover) {
-    className += " hover";
-  }
-  if (isFancy) {
-    className += " fancy";
+    return <input value={text} onChange={(e) => setText(e.target.value)} />;
   }
 
   return (
-    <div
-      className={className}
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
-    >
-      <h1>{score}</h1>
-      <button onClick={() => setScore(score + 1)}>加一</button>
-    </div>
+    <>
+      <MyTextField />
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        点击了 {counter} 次
+      </button>
+    </>
   );
 }
