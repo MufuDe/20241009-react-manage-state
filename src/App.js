@@ -1,27 +1,47 @@
 import { useState } from "react";
 
 export default function App() {
-  const [showHint, setShowHint] = useState(false);
-  return (
-    <div>
-      {showHint && (
-        <p>
-          <i>提示：你最喜欢的城市？</i>
-        </p>
-      )}
-      <Form />
-      <button
-        onClick={() => {
-          setShowHint(!showHint);
-        }}
-      >
-        显示提示
-      </button>
-    </div>
+  const [reverse, setReverse] = useState(false);
+  let checkbox = (
+    <label>
+      <input
+        type="checkbox"
+        checked={reverse}
+        onChange={(e) => setReverse(e.target.checked)}
+      />
+      调换顺序
+    </label>
   );
+  if (reverse) {
+    return (
+      <>
+        <Field label="姓氏" />
+        <Field label="名字" />
+        {checkbox}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Field label="名字" />
+        <Field label="姓氏" />
+        {checkbox}
+      </>
+    );
+  }
 }
 
-function Form() {
+function Field({ label }) {
   const [text, setText] = useState("");
-  return <textarea value={text} onChange={(e) => setText(e.target.value)} />;
+  return (
+    <label>
+      {label}：
+      <input
+        type="text"
+        value={text}
+        placeholder={label}
+        onChange={(e) => setText(e.target.value)}
+      />
+    </label>
+  );
 }
