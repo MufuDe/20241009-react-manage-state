@@ -6,11 +6,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={"Chat to " + contact.name}
+        placeholder={"跟 " + contact.name + " 聊一聊"}
         onChange={(e) => setText(e.target.value)}
       />
       <br />
-      <button>发送给 {contact.email}</button>
+      <button>发送到 {contact.email}</button>
     </section>
   );
 }

@@ -3,7 +3,7 @@ export default function ContactList({ selectedContact, contacts, onSelect }) {
     <section className="contact-list">
       <ul>
         {contacts.map((contact) => (
-          <li key={contact.email}>
+          <li key={contact.id}>
             <button
               onClick={() => {
                 onSelect(contact);
