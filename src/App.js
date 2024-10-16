@@ -1,42 +1,32 @@
 import { useState } from "react";
-import { foods, filterItems } from "./data.js";
 
-export default function FilterableList() {
-  const [query, setQuery] = useState("");
-  const results = filterItems(foods, query);
+export default function App() {
+  const counter = <Counter />;
+  return (
+    <div>
+      {counter}
+      {counter}
+    </div>
+  );
+}
 
-  function handleChange(e) {
-    setQuery(e.target.value);
+function Counter() {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = "counter";
+  if (hover) {
+    className += " hover";
   }
 
   return (
-    <>
-      <SearchBar query={query} onChange={handleChange} />
-      <hr />
-      <List items={results} />
-    </>
-  );
-}
-
-function SearchBar({ query, onChange }) {
-  return (
-    <label>
-      搜索： <input value={query} onChange={onChange} />
-    </label>
-  );
-}
-
-function List({ items }) {
-  return (
-    <table>
-      <tbody>
-        {items.map((food) => (
-          <tr key={food.id}>
-            <td>{food.name}</td>
-            <td>{food.description}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{score}</h1>
+      <button onClick={() => setScore(score + 1)}>加一</button>
+    </div>
   );
 }
