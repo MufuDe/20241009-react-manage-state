@@ -22,8 +22,8 @@ export default function ContactList() {
         以相反的顺序显示
       </label>
       <ul>
-        {displayedContacts.map((contact, i) => (
-          <li key={i}>
+        {displayedContacts.map((contact) => (
+          <li key={contact.id}>
             <Contact contact={contact} />
           </li>
         ))}
