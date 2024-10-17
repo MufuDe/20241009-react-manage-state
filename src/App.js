@@ -19,7 +19,7 @@ export default function Gallery() {
       <h3>
         {images.length} 张图片中的第 {index + 1} 张
       </h3>
-      <img src={image.src} />
+      <img key={image.src} src={image.src} />
       <p>{image.place}</p>
     </>
   );
